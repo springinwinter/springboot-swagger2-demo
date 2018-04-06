@@ -1,6 +1,5 @@
 package com.test.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,19 +22,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swaggers {
 
-	/*// 版本号
-	@Value("${version}")
-	private String version;
-
-	// 项目请求地址
-	@Value("${swaggers.request.base.url}")
-	private String baseUrl;*/
-
 	@Bean
 	public Docket createRestApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				// 重写BASE URL
-//				.pathProvider(new BasePathAwareRelativePathProvider(baseUrl))
 				.apiInfo(apiInfo())
 				.enableUrlTemplating(true)
 				.select()
@@ -54,7 +43,6 @@ public class Swaggers {
 				.title("Spring Boot中使用Swagger2构建RESTful APIs")
 				.description("更多Spring Boot相关文章请百度：http://www.baidu.com")
 				.termsOfServiceUrl("http://www.baidu.com/")
-//				.version(version)
 				.build();
 	}
 

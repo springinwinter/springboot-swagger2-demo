@@ -15,6 +15,7 @@ import com.test.entity.User;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -58,7 +59,7 @@ public class UserController {
     @ApiOperation(value = "获取用户详细信息，非restful风格",notes = "入参是基础数据类型，使用默认参数paramType = query")
     @ApiImplicitParam(name = "id2", value = "用户ID", required = true, dataType = "Long",paramType = "query")
     @RequestMapping(value = "/find", method = RequestMethod.GET)
-    public User getUser(Long id2,User user) {
+    public User getUser(@ApiIgnore HttpSession session,Long id2, User user) {
         return users.get(id2);
     }
 
