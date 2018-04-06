@@ -33,7 +33,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户列表", notes = "根据传入条件筛选用户")
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    public ApiReturnInfo<List<User>> getUserList(ApiReturnInfo resp) {
+    public ApiReturnInfo<List<User>> getUserList(@ApiIgnore ApiReturnInfo resp) {
         List<User> r = new ArrayList<User>(users.values());
         resp.setCode(ResultCodeEnum.RESULT_CODE_SUCCESS.getCode());
         resp.setMessage(ResultCodeEnum.RESULT_CODE_SUCCESS.getMessage());
@@ -50,16 +50,16 @@ public class UserController {
      */
     @ApiOperation(value = "创建用户", notes = "根据User对象创建用户")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String postUser(@RequestBody User user) {
+    public String postUser(User user) {
         users.put(user.getId(), user);
         return "success";
     }
 
     @ApiOperation(value = "获取用户详细信息，非restful风格",notes = "入参是基础数据类型，使用默认参数paramType = query")
-    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long",paramType = "form")
+    @ApiImplicitParam(name = "id2", value = "用户ID", required = true, dataType = "Long",paramType = "query")
     @RequestMapping(value = "/find", method = RequestMethod.GET)
-    public User getUser(Long id) {
-        return users.get(id);
+    public User getUser(Long id2,User user) {
+        return users.get(id2);
     }
 
     /**
