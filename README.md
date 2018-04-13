@@ -1,7 +1,7 @@
 # swagger2常用注解说明 
 ## 
 - @Api()用于类； 
-表示标识这个类是swagger的资源 
+表示这个类是swagger的资源 
 - @ApiOperation()用于方法； 
 表示一个http请求的操作 
 - @ApiParam()用于方法，参数，字段说明； 
